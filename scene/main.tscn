@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjfm5tw58meq2"]
+
+[ext_resource type="PackedScene" uid="uid://q5nmatnjor8l" path="res://scene/environment/island.tscn" id="2_of57s"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Island" parent="." instance=ExtResource("2_of57s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, 0)

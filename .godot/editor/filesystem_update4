@@ -1,0 +1,6 @@
+res://scene/player/tank.tscn
+res://scene/player/outline.gdshader
+res://assert/ui/theme.tres
+res://scene/player/cannon_ball_fire.gdshader
+res://scene/vfx/explosion_big.tres
+res://scene/vfx/dust.tres

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4gbotqfghqjm"]
+
+[ext_resource type="Shader" uid="uid://btddr58de13rp" path="res://scene/player/cannon_ball_fire.gdshader" id="1_fimp5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fimp5"]
+radius = 0.4
+height = 0.8
+radial_segments = 8
+rings = 16
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_llmsr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lsodw"]
+render_priority = 0
+shader = ExtResource("1_fimp5")
+shader_parameter/time_speed = 2.0
+shader_parameter/surface_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/brightness = 2.0
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 2.0
+shader_parameter/vertical_frequency = 2.0
+shader_parameter/size = 3.0
+shader_parameter/banding_bias = 0.6
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_llmsr")
+shader_parameter/wave_height = 0.2
+shader_parameter/texture_height = 0.2
+shader_parameter/color1 = Color(0.365888, 0.58053, 0.821438, 1)
+shader_parameter/color2 = Color(0.174407, 0.387108, 0.504812, 1)
+shader_parameter/color3 = Color(0.552587, 0.642921, 0.416724, 1)
+shader_parameter/color4 = Color(0.873322, 0.309217, 0.404407, 1)
+
+[node name="TankSoul" type="Node3D"]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transparency = 0.4
+mesh = SubResource("SphereMesh_fimp5")
+surface_material_override/0 = SubResource("ShaderMaterial_lsodw")

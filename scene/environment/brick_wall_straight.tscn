@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cemxnunqkk8so"]
+
+[ext_resource type="PackedScene" uid="uid://c0xdqf8h1py5d" path="res://scene/environment/brick.tscn" id="1_t4jhw"]
+
+[node name="BrickWallStraight" type="Node3D"]
+
+[node name="Brick" parent="." instance=ExtResource("1_t4jhw")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 0.981946, 0)
+
+[node name="Brick3" parent="." instance=ExtResource("1_t4jhw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.981946, 0)
+
+[node name="Brick5" parent="." instance=ExtResource("1_t4jhw")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.98195, 0)

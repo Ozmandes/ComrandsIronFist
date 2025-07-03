@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bba5wj5bypcy5"]
+
+[ext_resource type="Script" uid="uid://b1n13amyk8jsw" path="res://scene/player/cannon_ball.gd" id="1_k7rnp"]
+[ext_resource type="Shader" uid="uid://btddr58de13rp" path="res://scene/player/cannon_ball_fire.gdshader" id="1_lsodw"]
+[ext_resource type="PackedScene" uid="uid://dan4tf87xj565" path="res://scene/vfx/explosion_big.tscn" id="2_cgigb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lsodw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgigb"]
+render_priority = 0
+shader = ExtResource("1_lsodw")
+shader_parameter/time_speed = 2.0
+shader_parameter/surface_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/brightness = 2.0
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 2.0
+shader_parameter/vertical_frequency = 2.0
+shader_parameter/size = 3.0
+shader_parameter/banding_bias = 0.6
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_lsodw")
+shader_parameter/wave_height = 0.2
+shader_parameter/texture_height = 0.2
+shader_parameter/color1 = Color(1, 0.801833, 0.59, 1)
+shader_parameter/color2 = Color(0.98, 0.53312, 0.2744, 1)
+shader_parameter/color3 = Color(0.85, 0.2176, 0.0595, 1)
+shader_parameter/color4 = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hlo0d"]
+material = SubResource("ShaderMaterial_cgigb")
+radius = 0.4
+height = 0.8
+radial_segments = 8
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rgf14"]
+radius = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cgigb"]
+radius = 16.0
+
+[node name="CannonBall" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 11
+mass = 10.0
+gravity_scale = 2.5
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_k7rnp")
+explosion_scene = ExtResource("2_cgigb")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_hlo0d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_rgf14")
+
+[node name="ExplosionRange" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRange"]
+shape = SubResource("SphereShape3D_cgigb")

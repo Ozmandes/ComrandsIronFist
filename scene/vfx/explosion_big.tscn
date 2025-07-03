@@ -1,0 +1,213 @@
+[gd_scene load_steps=22 format=3 uid="uid://dan4tf87xj565"]
+
+[ext_resource type="Script" uid="uid://ft63ed5aru6b" path="res://scene/vfx/explosion_big.gd" id="1_a1ate"]
+[ext_resource type="Shader" uid="uid://bnwl7a6km4fa1" path="res://scene/vfx/explosion_big.tres" id="1_cld0f"]
+
+[sub_resource type="Curve" id="Curve_gh0fv"]
+_data = [Vector2(0.772321, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cld0f"]
+curve = SubResource("Curve_gh0fv")
+
+[sub_resource type="Gradient" id="Gradient_a1ate"]
+offsets = PackedFloat32Array(0.0913979, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gh0fv"]
+gradient = SubResource("Gradient_a1ate")
+
+[sub_resource type="Curve" id="Curve_cld0f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.647321, 0.460829), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a1ate"]
+curve = SubResource("Curve_cld0f")
+
+[sub_resource type="Curve" id="Curve_a1ate"]
+_data = [Vector2(0, 0.290566), 0.0, 3.38113, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gh0fv"]
+curve = SubResource("Curve_a1ate")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cld0f"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 15.0
+radial_accel_max = 25.0
+radial_accel_curve = SubResource("CurveTexture_a1ate")
+scale_min = 1.4
+scale_max = 1.6
+scale_curve = SubResource("CurveTexture_gh0fv")
+color_ramp = SubResource("GradientTexture1D_gh0fv")
+alpha_curve = SubResource("CurveTexture_cld0f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cld0f"]
+render_priority = 0
+shader = ExtResource("1_cld0f")
+shader_parameter/Speed = Vector2(0.5, 0.5)
+shader_parameter/Strength = 0.5
+shader_parameter/Color = Color(0.77821, 0.316262, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_a1ate"]
+material = SubResource("ShaderMaterial_cld0f")
+radius = 1.5
+height = 3.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypawh"]
+render_priority = -1
+albedo_color = Color(0.93, 0.40548, 0.0558, 1)
+emission_enabled = true
+emission = Color(0.509597, 0.167476, 0.0665268, 1)
+emission_energy_multiplier = 20.0
+grow = true
+
+[sub_resource type="Curve" id="Curve_s5cto"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.325893, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bfc18"]
+curve = SubResource("Curve_s5cto")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1qc0q"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_bfc18")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1ydcx"]
+top_radius = 0.05
+bottom_radius = 0.0
+height = 8.0
+radial_segments = 8
+
+[sub_resource type="Animation" id="Animation_cld0f"]
+resource_name = "Explosion"
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Main:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.02),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Debris:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.02),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.2),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [0.0, 40.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_a1ate"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Main:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Debris:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [40.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1ate"]
+_data = {
+&"Explosion": SubResource("Animation_cld0f"),
+&"RESET": SubResource("Animation_a1ate")
+}
+
+[node name="ExplosionBig" type="Node3D"]
+script = ExtResource("1_a1ate")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="Main" type="GPUParticles3D" parent="Visual"]
+emitting = false
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_cld0f")
+draw_pass_1 = SubResource("SphereMesh_a1ate")
+
+[node name="Debris" type="GPUParticles3D" parent="Visual"]
+material_override = SubResource("StandardMaterial3D_ypawh")
+emitting = false
+amount = 12
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1qc0q")
+draw_pass_1 = SubResource("CylinderMesh_1ydcx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Visual"]
+light_color = Color(1, 0.574, 0.29, 1)
+light_energy = 40.0
+omni_range = 20.0
+omni_attenuation = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a1ate")
+}
+autoplay = "Explosion"

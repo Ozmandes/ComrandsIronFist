@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=3 uid="uid://chcjjgfch6w70"]
+
+[ext_resource type="Theme" uid="uid://ycs6476ekecu" path="res://assert/ui/theme.tres" id="1_1amj0"]
+[ext_resource type="Script" uid="uid://pe6ga4pkhlbv" path="res://scene/ui/ui_information.gd" id="1_m7jhw"]
+[ext_resource type="Texture2D" uid="uid://dn675u8tqo3ms" path="res://assert/ui/TankUI.png" id="3_eo6hd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icrnd"]
+atlas = ExtResource("3_eo6hd")
+region = Rect2(135, 14, 823, 1053)
+
+[node name="UIInformation" type="CanvasLayer"]
+script = ExtResource("1_m7jhw")
+
+[node name="Direction" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Direction"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 256
+
+[node name="Label" type="Label" parent="Direction/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1amj0")
+theme_override_colors/font_color = Color(0.821784, 0.514637, 1, 0.5)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Direction/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1amj0")
+theme_override_colors/font_color = Color(0.823529, 0.513726, 1, 0.501961)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Information" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Information"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="Information/HBoxContainer"]
+custom_minimum_size = Vector2(205.75, 263.25)
+layout_mode = 2
+texture = SubResource("AtlasTexture_icrnd")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Information/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Information/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+
+[node name="ReloadingText" type="RichTextLabel" parent="Information/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_1amj0")
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(1, 0.6, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_constants/shadow_offset_y = 8
+bbcode_enabled = true
+text = "Ready to fire"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthProgress" type="ProgressBar" parent="Information/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(324, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+theme = ExtResource("1_1amj0")
+max_value = 1.0
+value = 0.5
+show_percentage = false
